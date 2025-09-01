@@ -3,39 +3,33 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
+from keep_alive import keep_alive
+import os
 
-# ------------------------------
-# CONFIG
+keep_alive()  # pornește endpoint-ul pingabil
+
 USERNAME = "andrei04pungaru@gmail.com"
 PASSWORD = ")$pungaru04"
 URL = "https://case-clicker.com/"
-# ------------------------------
 
 options = Options()
-options.add_argument("--headless")  # rulează fără interfață grafică
+options.add_argument("--headless=new")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
 
+# pe Replit trebuie să folosim chromedriver instalat în environment
 driver = webdriver.Chrome(options=options)
 
 try:
     driver.get(URL)
-    time.sleep(5)  # așteaptă încărcarea site-ului
+    time.sleep(5)
 
-    # TODO: aici trebuie să dai click pe butonul de login și să completezi câmpurile
-    # Exemplu (trebuie adaptat după ce inspectăm site-ul):
-    # login_button = driver.find_element(By.LINK_TEXT, "Login")
-    # login_button.click()
-    # time.sleep(2)
-    # username_input = driver.find_element(By.NAME, "username")
-    # password_input = driver.find_element(By.NAME, "password")
-    # username_input.send_keys(USERNAME)
-    # password_input.send_keys(PASSWORD)
-    # password_input.send_keys(Keys.RETURN)
-
+    # TODO: Click login și completare user/pass
     print("Am deschis site-ul și sunt logat (simulat)!")
+
     while True:
-        time.sleep(60)  # ține sesiunea activă
+        time.sleep(60)
 
 finally:
     driver.quit()
